@@ -1,11 +1,8 @@
 import React from "react";
+import UserProfile from "./UserProfile";
 
 const App = () => {
-	return (
-		<div>
-			<h1>Hello World</h1>
-		</div>
-	);
+	return <UserProfile />;
 };
 
 export default App;
