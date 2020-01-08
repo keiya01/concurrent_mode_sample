@@ -6,7 +6,7 @@ const resouces = fetchUserInfo("keiya01");
 
 const UserProfile = () => {
 	return (
-		<Suspense fallback={<p>loading...</p>}>
+		<Suspense fallback={<p>Loading profile...</p>}>
 			<UserInfo resouces={resouces} />
 		</Suspense>
 	);
