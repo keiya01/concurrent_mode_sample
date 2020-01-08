@@ -9,15 +9,20 @@ module.exports = {
 		chunkFilename: "[name].[contenthash].bundle.js",
 		path: path.resolve(__dirname, "dist")
 	},
+	resolve: {
+		modules: [ "node_modules" ],
+		extensions: [ ".js" ]
+	},
 	module: {
 		rules: [
 			{
 				test: /.js$/,
+				exclude: /node_modules/,
 				use: [
 					{
 						loader: "babel-loader",
 						options: {
-							presets: [ "@babel/preset-env", "@babel/preset-react" ],
+							presets: [ [ "@babel/preset-env", { useBuiltIns: "usage", corejs: 3 } ], "@babel/preset-react" ],
 							plugins: [ "babel-plugin-syntax-dynamic-import" ]
 						}
 					}
