@@ -1,6 +1,7 @@
 import React, { useTransition, useState, useContext } from "react";
 import styled from "styled-components";
-import { wrapPromise, fetchUserRepos } from "../services/userInfoService";
+import { fetchUserRepos } from "../services/userInfoService";
+import wrapPromise from "../services/wrapPromise";
 import { MainHeaderContext } from "./MainHeader";
 
 const Container = styled.div`

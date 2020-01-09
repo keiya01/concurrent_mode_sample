@@ -33,7 +33,7 @@ const LoadingText = styled.p`
 
 export const MainHeaderContext = createContext({ isLoading: false, setIsLoading: () => {} });
 
-const MainHeader = ({ children }) => {
+const MainHeader = ({ children, setResouces }) => {
 	const [ isLoading, setIsLoading ] = useState(false);
 	const contextValue = {
 		isLoading,
