@@ -12,7 +12,7 @@ const UserProfile = ({ resouces, setResouces }) => {
 			<Container>
 				<UserInfo resouces={resouces} />
 				<Suspense fallback={<LoadingText>Loading repositories...</LoadingText>}>
-					<RepoList resouces={resouces} setResouces={setResouces} username="keiya01" limit={10} page={1} />
+					<RepoList resouces={resouces} setResouces={setResouces} username="keiya01" limit={20} page={1} />
 				</Suspense>
 			</Container>
 		</Suspense>
