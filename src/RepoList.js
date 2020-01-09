@@ -87,6 +87,7 @@ const RepoList = ({ resouces, setResouces, username, limit, page: _page }) => {
 	const hasPrev = page > 1;
 
 	const handleFetchData = (nextPage) => {
+		window.scrollTo(0, 0);
 		setIsLoading(true);
 		startTransition(() => {
 			setPage(nextPage);
