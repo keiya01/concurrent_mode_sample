@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const SearchForm = styled.form`display: flex;`;
+const Form = styled.form`display: flex;`;
 
-const SearchInput = styled.input`
+const Input = styled.input`
 	border: 1px solid #fff;
 	background-color: #fff;
 	font-size: 16px;
@@ -17,9 +17,9 @@ const SearchInput = styled.input`
 
 const SearchForm = () => {
 	return (
-		<SearchForm>
-			<SearchInput type="test" aria-label="Search GitHub users" placeholder="Search GitHub users" />
-		</SearchForm>
+		<Form>
+			<Input type="test" aria-label="Search GitHub users" placeholder="Search GitHub users" />
+		</Form>
 	);
 };
 
