@@ -3,11 +3,16 @@
   <img alt="demo" src="https://raw.githubusercontent.com/keiya01/github-user-search/master/demo.gif">
 </div>
 
-# about
+# About
 - Implemented using concurrent mode in React
 - Used GitHub API
 - This app can search GitHub user
 
-# warning
+# Warning
 - This app is prototype thus it is not stable
 - I will improve this app while I refer documentation still concurrent mode is released as stable version
+- There are request limits on GitHub API. Please check detail [GitHub API Documentation](https://developer.github.com/v3/rate_limit/)
+
+# Usage
+- 1. `yarn`
+- 2. `yarn start`
