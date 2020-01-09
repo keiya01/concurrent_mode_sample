@@ -11,7 +11,7 @@
 # Warning
 - This app is prototype thus it is not stable
 - I will improve this app while I refer documentation still concurrent mode is released as stable version
-- There are request limits on GitHub API. Please check detail [GitHub API Documentation](https://developer.github.com/v3/rate_limit/)
+- There are request limits on GitHub API. Please check detail ([GitHub API Documentation](https://developer.github.com/v3/rate_limit/))
 
 # Usage
 1. `yarn`
