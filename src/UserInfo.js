@@ -8,9 +8,19 @@ const Container = styled.div`
 	align-items: center;
 `;
 
-const UserNameWrapper = styled.div`
-	display: inline-block;
+const AvatarWrapper = styled.div`
+	display: flex;
+	align-items: center;
 	padding-bottom: 10px;
+`;
+
+const Avatar = styled.img`
+	object-fit: contain;
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+	margin-right: 15px;
+	border: 1px solid #fff;
 `;
 
 const UserName = styled.h1`
@@ -22,9 +32,10 @@ const UserInfo = (props) => {
 	const userInfo = props.resouces.detail.read();
 	return (
 		<Container>
-			<UserNameWrapper>
+			<AvatarWrapper>
+				<Avatar src={userInfo.avatar_url} />
 				<UserName>{userInfo.name}</UserName>
-			</UserNameWrapper>
+			</AvatarWrapper>
 		</Container>
 	);
 };
