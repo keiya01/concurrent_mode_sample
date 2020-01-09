@@ -5,7 +5,7 @@ import RepoList from "./RepoList";
 import LoadingText from "./LoadingText";
 import styled from "styled-components";
 
-const Container = styled.div`padding: 100px 0;`;
+const Container = styled.div`padding: 150px 0;`;
 
 const initialResouces = fetchUserInfo("keiya01", 10);
 
