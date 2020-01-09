@@ -14,5 +14,5 @@
 - There are request limits on GitHub API. Please check detail [GitHub API Documentation](https://developer.github.com/v3/rate_limit/)
 
 # Usage
-- 1. `yarn`
-- 2. `yarn start`
+1. `yarn`
+2. `yarn start`
