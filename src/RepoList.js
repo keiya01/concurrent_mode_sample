@@ -1,6 +1,7 @@
-import React, { useTransition, useState } from "react";
+import React, { useTransition, useState, useContext } from "react";
 import styled from "styled-components";
 import { wrapPromise, fetchUserRepos } from "../services/userInfoService";
+import { MainHeaderContext } from "./MainHeader";
 
 const Container = styled.div`
 	width: 90%;
@@ -80,28 +81,29 @@ const RepoList = ({ resouces, setResouces, username, limit, page: _page }) => {
 		timeoutMs: 3000
 	});
 	const [ page, setPage ] = useState(_page);
+	const { setIsLoading } = useContext(MainHeaderContext);
 
 	const hasNext = repos.length >= limit;
 	const hasPrev = page > 1;
 
-	const handleOnClickNext = () => {
+	const handleFetchData = (nextPage) => {
+		setIsLoading(true);
 		startTransition(() => {
-			setPage(page + 1);
+			setPage(nextPage);
 			setResouces((prev) => ({
 				...prev,
-				repos: wrapPromise(fetchUserRepos(username, limit, page + 1))
+				repos: wrapPromise(fetchUserRepos(username, limit, nextPage))
 			}));
+			setIsLoading(false);
 		});
 	};
 
+	const handleOnClickNext = () => {
+		handleFetchData(page + 1);
+	};
+
 	const handleOnClickPrev = () => {
-		startTransition(() => {
-			setPage(page - 1);
-			setResouces((prev) => ({
-				...prev,
-				repos: wrapPromise(fetchUserRepos(username, limit, page - 1))
-			}));
-		});
+		handleFetchData(page - 1);
 	};
 
 	return (
