@@ -77,7 +77,7 @@ const SearchForm = ({ setResouces }) => {
 	const users = userResouces ? userResouces.read().items : [];
 	const [ activeID, setActiveID ] = useState(0);
 	const [ startTransition, isPending ] = useTransition({ timeoutMs: 3000 });
-	const deferredText = useDeferredValue(text, { timeoutMs: 1500 });
+	const deferredText = useDeferredValue(text, { timeoutMs: 2000 });
 
 	const handleOnSubmit = useCallback((e) => {
 		e.preventDefault();
