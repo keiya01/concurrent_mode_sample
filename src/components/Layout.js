@@ -9,7 +9,7 @@ const Layout = createGlobalStyle`
     padding: 0;
     background-color: #282828;
   }
-  h1, h2, h3, h4, h5, p, span, div {
+  h1, h2, h3, h4, h5, p, span, div, ul, li {
     margin: 0;
     padding: 0;
   }
