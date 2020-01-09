@@ -33,7 +33,7 @@ const LoadingText = styled.p`
 
 export const MainHeaderContext = createContext({ isLoading: false, setIsLoading: () => {} });
 
-const MainHeader = (props) => {
+const MainHeader = ({ children }) => {
 	const [ isLoading, setIsLoading ] = useState(false);
 	const contextValue = {
 		isLoading,
@@ -45,14 +45,14 @@ const MainHeader = (props) => {
 		<MainHeaderContext.Provider value={contextValue}>
 			<Header>
 				<div style={{ display: "flex", flex: 1 }} />
-				<SearchForm />
+				<SearchForm setResouces={setResouces} />
 			</Header>
 			{deferredIsLoading && (
 				<LoadingHeader>
 					<LoadingText>loading now ...</LoadingText>
 				</LoadingHeader>
 			)}
-			{props.children}
+			{children}
 		</MainHeaderContext.Provider>
 	);
 };

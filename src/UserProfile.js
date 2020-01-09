@@ -1,5 +1,4 @@
-import React, { Suspense, useState } from "react";
-import fetchUserInfo from "../services/userInfoService";
+import React, { Suspense } from "react";
 import UserInfo from "./UserInfo";
 import RepoList from "./RepoList";
 import LoadingText from "./LoadingText";
@@ -7,11 +6,7 @@ import styled from "styled-components";
 
 const Container = styled.div`padding: 150px 0;`;
 
-const initialResouces = fetchUserInfo("keiya01", 10);
-
-const UserProfile = () => {
-	const [ resouces, setResouces ] = useState(initialResouces);
-
+const UserProfile = ({ resouces, setResouces }) => {
 	return (
 		<Suspense fallback={<LoadingText>Loading profile...</LoadingText>}>
 			<Container>

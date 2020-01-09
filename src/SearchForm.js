@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Form = styled.form`display: flex;`;
@@ -16,10 +16,26 @@ const Input = styled.input`
 	}
 `;
 
-const SearchForm = () => {
+const SearchForm = ({ setResouces }) => {
+	const [ text, setText ] = useState("");
+
+	const handleOnSubmit = (e) => {
+		e.preventDefault();
+	};
+
+	const handleOnChange = (e) => {
+		setText(e.target.value);
+	};
+
 	return (
-		<Form>
-			<Input type="test" aria-label="Search GitHub users" placeholder="Search GitHub users" />
+		<Form onSubmit={handleOnSubmit}>
+			<Input
+				type="test"
+				aria-label="Search GitHub users"
+				placeholder="Search GitHub users"
+				onChange={handleOnChange}
+				value={text}
+			/>
 		</Form>
 	);
 };
