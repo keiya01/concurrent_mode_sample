@@ -6,12 +6,13 @@ const Form = styled.form`display: flex;`;
 const Input = styled.input`
 	border: 1px solid #fff;
 	background-color: #fff;
-	font-size: 16px;
+	font-size: 15px;
 	padding: 5px 10px;
 	width: 220px;
 	border-radius: 3px;
 	&::placeholder {
 		color: #aaa;
+		font-size: 15px;
 	}
 `;
 
