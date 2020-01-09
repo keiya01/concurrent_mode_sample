@@ -11,6 +11,11 @@ export const fetchUserRepos = async (username, limit, page) => {
 	return res.json();
 };
 
+export const searchUser = async (username, limit) => {
+	const res = await fetch(`${GITHUB_API}/search/users?q=${username}&per_page=${limit}`);
+	return res.json();
+};
+
 export default function fetchUserInfo(username, limit, page = 1) {
 	const detail = fetchUserDetail(username);
 	const repos = fetchUserRepos(username, limit, page);
