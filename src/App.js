@@ -6,9 +6,10 @@ import MainHeader from "./MainHeader";
 const App = () => {
 	return (
 		<>
-		<MainHeader/>
-		<Layout/>
-		<UserProfile />
+			<MainHeader>
+				<UserProfile />
+			</MainHeader>
+			<Layout/>
 		</>
 	);
 };
