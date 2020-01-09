@@ -1,4 +1,4 @@
-import React, { createContext, useState, useDeferredValue } from "react";
+import React, { createContext, useState, useDeferredValue, Suspense } from "react";
 import styled from "styled-components";
 import SearchForm from "./SearchForm";
 
@@ -45,7 +45,9 @@ const MainHeader = ({ children, setResouces }) => {
 		<MainHeaderContext.Provider value={contextValue}>
 			<Header>
 				<div style={{ display: "flex", flex: 1 }} />
-				<SearchForm setResouces={setResouces} />
+				<Suspense fallback="loading ...">
+					<SearchForm setResouces={setResouces} />
+				</Suspense>
 			</Header>
 			{deferredIsLoading && (
 				<LoadingHeader>

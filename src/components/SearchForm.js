@@ -1,6 +1,8 @@
-import React, { useState, useDeferredValue, useEffect, useCallback, useTransition } from "react";
+import React, { useState, useDeferredValue, useEffect, useCallback, useTransition, useRef } from "react";
 import styled from "styled-components";
 import fetchUserInfo, { searchUser } from "../services/userInfoService";
+import wrapPromise from "../services/wrapPromise";
+import LoadingText from "./LoadingText";
 
 const Form = styled.form`
 	position: relative;
@@ -66,11 +68,13 @@ const Name = styled.p`
 	font-size: 13px;
 	font-weight: bold;
 	color: #fff;
+	word-break: break-all;
 `;
 
 const SearchForm = ({ setResouces }) => {
 	const [ text, setText ] = useState("");
-	const [ users, setUsers ] = useState([]);
+	const [ userResouces, setUserResouces ] = useState(null);
+	const users = userResouces ? userResouces.read().items : [];
 	const [ activeID, setActiveID ] = useState(0);
 	const [ startTransition, isPending ] = useTransition({ timeoutMs: 3000 });
 	const deferredText = useDeferredValue(text, { timeoutMs: 1500 });
@@ -87,19 +91,18 @@ const SearchForm = ({ setResouces }) => {
 		setActiveID(user.id);
 		startTransition(() => {
 			setText("");
-			setUsers([]);
+			setUserResouces(null);
 			setResouces(fetchUserInfo(user.login, 20));
 		});
 	};
 
 	useEffect(
 		() => {
-			const fetch = async () => {
-				const searchUsers = await searchUser(deferredText, 7);
-				setUsers(searchUsers.items);
-			};
 			if (deferredText) {
-				fetch();
+				setActiveID(0);
+				startTransition(() => {
+					setUserResouces(wrapPromise(searchUser(deferredText, 7)));
+				});
 			}
 		},
 		[ deferredText ]
@@ -118,17 +121,21 @@ const SearchForm = ({ setResouces }) => {
 			users.length > 0 &&
 			text && (
 				<UserListContainer>
-					<UserList>
-						{users.map((user) => {
-							const isActive = isPending && user.id === activeID;
-							return (
-								<UserItem disabled={isPending} onClick={handleOnClick(user)} key={user.id} isActive={isActive}>
-									<Avatar src={user.avatar_url} />
-									<Name>{isActive ? "loading profile ..." : user.login}</Name>
-								</UserItem>
-							);
-						})}
-					</UserList>
+					{isPending && activeID === 0 ? (
+						<LoadingText>loading ...</LoadingText>
+					) : (
+						<UserList>
+							{users.map((user) => {
+								const isActive = isPending && user.id === activeID;
+								return (
+									<UserItem disabled={isPending} onClick={handleOnClick(user)} key={user.id} isActive={isActive}>
+										<Avatar src={user.avatar_url} />
+										<Name>{isActive ? "loading profile ..." : user.login}</Name>
+									</UserItem>
+								);
+							})}
+						</UserList>
+					)}
 				</UserListContainer>
 			)}
 		</Form>
